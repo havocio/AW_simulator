@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>合成模拟器</title>
-  <script type="text/javascript">
-		var count = 0;
-		var index = 1;
+    <title>合成模拟器</title>
+    <script type="text/javascript">
+  		// 初始化参数
+		var count = 0;  // 成功次数
+		var index = 1;  // 合成次数
 		var probability = 0.01;
+		var xizuo = 0;
+		var feiqiu = 0;
+
+		// 单次合成
 		function calculate() {
 			var input = document.getElementById("input").value;
 
@@ -17,6 +22,12 @@
 			document.getElementById("result").innerHTML = result;
 
 			if (Math.random() < probability) {
+				if (probability == 0.01){
+					xizuo += 1;
+				}
+				if (probability >= 0.79){
+					feiqiu += 1;
+				}
 				count++;
 				probability = 0.01;
 			} else {
@@ -24,9 +35,13 @@
 			}
 			document.getElementById("probability").innerHTML = probability.toFixed(2);
 			document.getElementById("count").innerHTML = count;
+			document.getElementById("xizuo").innerHTML = xizuo;
+			document.getElementById("feiqiu").innerHTML = feiqiu;
+
 			index += 1;
 		}
 
+		// 十连合成
 		function calculate10() {
 			for (var i=0; i<10; i++){
 				var input = document.getElementById("input").value;
@@ -39,6 +54,12 @@
 				document.getElementById("result").innerHTML = result;
 
 				if (Math.random() < probability) {
+					if (probability == 0.01){
+						xizuo += 1;
+					}
+					if (probability >= 0.79){
+						feiqiu += 1;
+					}
 					count++;
 					probability = 0.01;
 				} else {
@@ -46,10 +67,13 @@
 				}
 				document.getElementById("probability").innerHTML = probability.toFixed(2);
 				document.getElementById("count").innerHTML = count;
+				document.getElementById("xizuo").innerHTML = xizuo;
+				document.getElementById("feiqiu").innerHTML = feiqiu;
 				index += 1;
 			}
 		}
 
+		// 100连合成
 		function calculate100() {
 			for (var i=0; i<100; i++){
 				var input = document.getElementById("input").value;
@@ -62,6 +86,12 @@
 				document.getElementById("result").innerHTML = result;
 
 				if (Math.random() < probability) {
+					if (probability == 0.01){
+						xizuo += 1;
+					}
+					if (probability >= 0.79){
+						feiqiu += 1;
+					}
 					count++;
 					probability = 0.01;
 				} else {
@@ -69,23 +99,35 @@
 				}
 				document.getElementById("probability").innerHTML = probability.toFixed(2);
 				document.getElementById("count").innerHTML = count;
+				document.getElementById("xizuo").innerHTML = xizuo;
+				document.getElementById("feiqiu").innerHTML = feiqiu;
 				index += 1;
 			}
 		}
-	</script>
-  <meta charset="utf-8">
+
+    </script>
+    <meta charset="utf-8">
 </head>
 <body>
-	<label for="input">输入血精数量：</label>
-	<input type="number" id="input" name="input" value="100000"><br><br>
-	<button onclick="calculate()">合成</button><br><br>
-	<button onclick="calculate10()">10次合成</button><br><br>
-	<button onclick="calculate100()">100次合成</button><br><br>
-	<label for="result">剩余血精：</label>
-	<span id="result"></span><br><br>
-	<label for="probability">当前概率：</label>
-	<span id="probability">0.01</span><br><br>
-	<label for="count">sss个数：</label>
-	<span id="count">0</span><br><br>
+<h1>合成模拟器v1.1</h1>
+<div>v1.1：新增10连，100连，非酋细作统计</div><br><br>
+<label for="input">输入血精数量：</label>
+<input type="number" id="input" name="input" value="100000"><br><br>
+<button onclick="calculate()">合成</button>
+<br><br>
+<button onclick="calculate10()">10次合成</button>
+<br><br>
+<button onclick="calculate100()">100次合成</button>
+<br><br>
+<label for="result">剩余血精：</label>
+<span id="result"></span><br><br>
+<label for="probability">当前概率：</label>
+<span id="probability">0.01</span><br><br>
+<label for="count">sss个数：</label>
+<span id="count">0</span><br><br>
+<label for="count">细作次数：</label>
+<span id="xizuo">0</span><br><br>
+<label for="count">非酋次数：</label>
+<span id="feiqiu">0</span><br><br>
 </body>
 </html>
